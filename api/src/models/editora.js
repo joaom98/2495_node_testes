@@ -9,7 +9,7 @@ class Editora {
     cidade,
     email,
     created_at,
-    updated_at
+    updated_at,
   }) {
     this.id = null || id;
     this.nome = nome;
