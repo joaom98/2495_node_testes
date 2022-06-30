@@ -1,5 +1,11 @@
-import { jest } from '@jest/globals';
+import { afterAll, jest } from '@jest/globals';
 import Editora from '../models/editora.js';
+import db from '../db/dbconfig.js';
+
+afterAll((done) => {
+  db.destroy();
+  done();
+});
 
 describe('Testes do modelo Editora', () => {
   const editora = new Editora({
