@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import Editora from '../models/editora.js';
 
 describe('Testes do modelo Editora', () => {
@@ -17,5 +18,14 @@ describe('Testes do modelo Editora', () => {
   it('Deve salvar utilizando o async', async () => {
     const dados = await editora.salvar();
     expect(dados.nome).toBe('CDC');
+  });
+  it('Deve fazer chamada simulada ao banco', () => {
+    editora.salvar = jest.fn(() => ({
+      nome: 'Casa do Codigo',
+      id: 18,
+    }));
+
+    const dados = editora.salvar();
+    expect(dados.nome).toBe('Casa do Codigo');
   });
 });
