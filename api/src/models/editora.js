@@ -24,7 +24,8 @@ class Editora {
   }
 
   static async pegarPeloId(id) {
-    return db.select('*').from('editoras').where({ id });
+    const resultado = await db.select('*').from('editoras').where({ id });
+    return resultado[0];
   }
 
   async criar(novoItem) {
@@ -55,11 +56,13 @@ class Editora {
     // se não existir é create
     // se existir é update
     if (this.id) {
-      const resultado = await this.atualizar(this.id, this);
-      return resultado;
+      return this.atualizar(this.id, this);
+      // const resultado = await this.atualizar(this.id, this);
+      // return resultado;
     }
-    const resultado = await this.criar(this);
-    return resultado;
+    return this.criar(this);
+    // const resultado = await this.criar(this);
+    // return resultado;
   }
 
   static async pegarLivrosPorEditora(editoraId) {
